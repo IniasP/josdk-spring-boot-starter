@@ -53,10 +53,12 @@ javaoperatorsdk:
       startup-timeout: 120000
 ```
 
-Unset server properties retain `kube-api-test`'s environment-variable and built-in defaults.
-`updateKubeConfig` is intentionally not exposed: the Spring integration always constructs the
-standard server with kubeconfig updates disabled. The kube-api-test binary and certificate cache
-may still be created in the configured `test-dir`, but the user's kubeconfig is never modified.
+Unset server properties are left to `kube-api-test`'s own environment-variable and built-in default
+handling.
+`updateKubeConfig` is intentionally not exposed: by default, the Spring integration constructs the
+server with kubeconfig updates disabled. The kube-api-test binary and certificate cache may still
+be created in the configured `test-dir`, but the user's kubeconfig is not modified unless a test
+supplies its own `KubeAPIServerConfig`, `KubeAPIServer`, or `Config` bean that changes this.
 
 `@EnableMockOperator` remains a separate CRUD-mock backend. Enabling kube-api-test does not change
 the mock annotation's behavior.

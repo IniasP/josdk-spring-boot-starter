@@ -39,7 +39,7 @@ public class KubeAPITestConfiguration {
       builder.withStartupTimeout(properties.getStartupTimeout());
     }
 
-    return builder.build();
+    return builder.withUpdateKubeConfig(false).build();
   }
 
   @Bean(initMethod = "start", destroyMethod = "stop")
